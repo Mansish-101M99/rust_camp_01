@@ -392,6 +392,32 @@ fn main() {
         print!("i:{} ; ", i);
     }
     println!(" | In for loop with start and end points, it will give uptil (endpoint - 1) and those two points separated by '..' ");
+    for i in 0..=20 {
+        if i == 20 {
+            println!("At 20 it will stop, since  a..=b  will go from point a and stops at b....")
+        }
+        print!("i:{} ; ", i);
+    }
+
+
+    // While loop 
+    // The while keyword can be used to run a loop when a condition is true. 
+    // A counter variable
+    let mut n = 1;
+
+    // Loop while the condition is true
+    while n != 10 {
+        if n % 3 == 0 {
+            println!("fizz");
+        } else if n % 5 == 0 {
+            println!("buzz");
+        } else {
+            println!("{}", n);
+        }
+        n += 1;
+    }
+    println!("In this while loop, n reached {}, so loop is over",n);
+
 
     // Infinite loop with 'loop'
     let mut c = 0;
@@ -404,12 +430,81 @@ fn main() {
         }
     }
 
+    let mut count2 = 0u32;
+    println!("Let's count until infinity!");
+
+    // Infinite loop 
+    loop {
+        count2 += 1;
+
+        if count2 == 3 {
+            println!("three");
+            // Skip the rest of this iteration
+            continue;
+        }
+        println!("{}", count2);
+
+        if count2 == 7 {
+            println!("OK, we got thala. That's enough...");
+            break;
+        }
+    }
+    assert_eq!(count2, 7);
+    println!("count2 = {}", count2);
+
+    // We can name outer and inner loops
+    let mut count3 = 0;
+    'outer: loop {   
+        'inner1: loop {
+            if count3 >= 20 {
+                // This would break only the inner1 loop
+                break 'inner1; // `break` is also works.
+            }
+            count3 += 2;
+        }
+        count3 += 5;
+
+        'inner2: loop {
+            if count3 >= 30 {
+                // This breaks the outer loop
+                break 'outer;
+            }
+            count3 += 3;
+            // This will continue the outer loop
+            continue 'outer;
+        }
+    }
+    assert!(count3 == 33);
+    println!("count3 = {}", count3);
+
+
     // Conditional loop
     let ar: [i32; 6] = [1, 2, 3, 4, 5, 6];
 
+    // The elements in  ar  are Copy，so there is no move here
     for el in ar.iter() {
         println!("Value : {}", el);
     }
+    println!("{:?}", ar);
+
+    let ar2: [i64; 6] = [5, 9, 7, 2, 8, 4];
+
+    // Iterate the indexing as 'i' and values as 'v' in 'ar2'
+    for (i,v) in ar2.iter().enumerate() {
+        println!("The {}th element is {}", i+1, v);
+    }
+
+    // Continue and break 
+    let mut n = 0;
+    for _ in 0..=100 {
+       if n != 66 {
+           n += 1;
+           continue;
+       }
+       break;
+    }
+    assert_eq!(n, 66);
+
 
 
     /*
